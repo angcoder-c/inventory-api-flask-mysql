@@ -11,7 +11,7 @@ class Category(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
     description = Column(Text, nullable=False)
-    products = relationship('Product', backref='category'),
+    products = relationship('Product', backref='category')
 
 class Product(db.Model):
     

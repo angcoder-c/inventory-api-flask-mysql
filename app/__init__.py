@@ -12,5 +12,11 @@ def create_app ():
 
     migrate.init_app(app, db)
     db.init_app(app)
+
+    from .controllers.category import category_bp
+    app.register_blueprint(category_bp)
+    
+    with app.app_context():
+        db.create_all()
     
     return app

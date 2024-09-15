@@ -2,6 +2,12 @@ CREATE DATABASE IF NOT EXISTS inventory_db;
 
 USE inventory_db;
 
+CREATE TABLE IF NOT EXISTS categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -11,12 +17,6 @@ CREATE TABLE IF NOT EXISTS products (
     category_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
-CREATE TABLE IF NOT EXISTS categories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    description TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS stores (
@@ -103,7 +103,7 @@ INSERT INTO providers (name, phone) VALUES
 INSERT INTO product_provider (product_id, provider_id) VALUES
 (1, 1), (2, 1), (3, 2), (4, 2), (5, 3), (6, 3);
 
-INSERT INTO orders (client_id, store_id, total) VALUES
+INSERT INTO orders (user_id, store_id, total) VALUES
 (2, 1, 849.98), (3, 2, 69.98), (4, 3, 6.98);
 
 INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
@@ -112,4 +112,3 @@ INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
 (2, 4, 1, 49.99),
 (2, 6, 2, 2.99),
 (3, 5, 1, 3.99);
-
